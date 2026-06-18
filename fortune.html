@@ -19,7 +19,6 @@
       overflow: hidden;
     }
 
-    /* 별 배경 */
     .stars {
       position: fixed;
       inset: 0;
@@ -46,11 +45,11 @@
       width: 100%;
     }
 
-    /* ── 랜딩 화면 ── */
+    /* ── 랜딩 ── */
     #landing { animation: fadeIn 1.2s ease; }
 
-    .moon {
-      font-size: 5rem;
+    .main-icon {
+      font-size: 4rem;
       display: block;
       margin-bottom: 1rem;
       animation: float 3s ease-in-out infinite;
@@ -66,7 +65,7 @@
       font-weight: 700;
       color: #f0e6ff;
       letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .subtitle {
       font-size: 0.9rem;
@@ -75,31 +74,45 @@
       letter-spacing: 0.08em;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.9rem 2.4rem;
-      background: linear-gradient(135deg, #7c3aed, #a855f7);
-      color: white;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      border: none;
-      border-radius: 50px;
+    /* 선택 카드 2개 */
+    .choice-wrap {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .choice-card {
+      flex: 1;
+      max-width: 200px;
+      background: linear-gradient(160deg, rgba(124,58,237,0.18), rgba(168,85,247,0.08));
+      border: 1px solid rgba(168,85,247,0.35);
+      border-radius: 20px;
+      padding: 1.6rem 1rem;
       cursor: pointer;
-      letter-spacing: 0.05em;
-      box-shadow: 0 0 24px rgba(168, 85, 247, 0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 36px rgba(168, 85, 247, 0.7);
+    .choice-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 28px rgba(168,85,247,0.45);
+      border-color: #a855f7;
     }
-    .btn:active { transform: translateY(0); }
+    .choice-card:active { transform: translateY(0); }
+    .choice-icon { font-size: 2.4rem; display: block; margin-bottom: 0.7rem; }
+    .choice-label {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1rem;
+      color: #f0e6ff;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    .choice-desc {
+      font-size: 0.75rem;
+      color: #9b8abf;
+      margin-top: 0.3rem;
+    }
 
-    /* ── 결과 화면 ── */
-    #result { display: none; animation: fadeIn 0.8s ease; }
-
-    .crystal {
+    /* ── 로딩 ── */
+    #loading { display: none; }
+    .loading-icon {
       font-size: 4rem;
       display: block;
       margin-bottom: 1.2rem;
@@ -109,64 +122,6 @@
       0%, 100% { filter: drop-shadow(0 0 8px #a855f7); transform: rotate(-5deg); }
       50% { filter: drop-shadow(0 0 20px #7c3aed); transform: rotate(5deg); }
     }
-
-    .result-label {
-      font-size: 0.85rem;
-      color: #9b8abf;
-      letter-spacing: 0.12em;
-      margin-bottom: 1rem;
-    }
-
-    .fortune-card {
-      background: linear-gradient(160deg, rgba(124,58,237,0.15), rgba(168,85,247,0.08));
-      border: 1px solid rgba(168,85,247,0.3);
-      border-radius: 20px;
-      padding: 2rem 1.8rem;
-      margin-bottom: 1.8rem;
-      backdrop-filter: blur(4px);
-    }
-
-    .fortune-text {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 1.2rem;
-      line-height: 1.9;
-      color: #f0e6ff;
-      word-break: keep-all;
-    }
-
-    .fortune-star {
-      display: block;
-      margin-top: 1.2rem;
-      font-size: 1rem;
-      color: #c084fc;
-      letter-spacing: 0.1em;
-    }
-
-    .btn-again {
-      display: inline-block;
-      padding: 0.7rem 2rem;
-      background: transparent;
-      color: #a855f7;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 0.9rem;
-      border: 1px solid rgba(168,85,247,0.4);
-      border-radius: 50px;
-      cursor: pointer;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
-    }
-    .btn-again:hover {
-      background: rgba(168,85,247,0.12);
-      border-color: #a855f7;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 로딩 점 */
-    #loading { display: none; }
     .dots span {
       display: inline-block;
       width: 10px; height: 10px;
@@ -181,6 +136,63 @@
       0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
       40% { transform: translateY(-12px); opacity: 1; }
     }
+
+    /* ── 결과 ── */
+    #result { display: none; }
+
+    .result-label {
+      font-size: 0.85rem;
+      color: #9b8abf;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .result-card {
+      background: linear-gradient(160deg, rgba(124,58,237,0.15), rgba(168,85,247,0.08));
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+    .result-text {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: #f0e6ff;
+      word-break: keep-all;
+    }
+    .result-sub {
+      font-size: 0.85rem;
+      color: #c084fc;
+      margin-top: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.7rem;
+      justify-content: center;
+    }
+    .btn-again {
+      padding: 0.65rem 1.6rem;
+      background: transparent;
+      color: #a855f7;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.88rem;
+      border: 1px solid rgba(168,85,247,0.4);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-again:hover {
+      background: rgba(168,85,247,0.12);
+      border-color: #a855f7;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -191,16 +203,27 @@
 
   <!-- 랜딩 -->
   <div id="landing">
-    <span class="moon">✉️</span>
-    <h1 class="title">오늘의 메시지</h1>
-    <p class="subtitle">오늘 당신에게 건네는 한 문장</p>
-    <button class="btn" onclick="showFortune()">💌 메시지 열기</button>
+    <span class="main-icon">✨</span>
+    <h1 class="title">오늘도 반가워요</h1>
+    <p class="subtitle">무엇이 필요하세요?</p>
+    <div class="choice-wrap">
+      <div class="choice-card" onclick="show('message')">
+        <span class="choice-icon">💌</span>
+        <div class="choice-label">오늘의<br>메시지</div>
+        <div class="choice-desc">오늘 당신에게<br>건네는 한 문장</div>
+      </div>
+      <div class="choice-card" onclick="show('menu')">
+        <span class="choice-icon">🍽️</span>
+        <div class="choice-label">오늘의<br>메뉴 추천</div>
+        <div class="choice-desc">오늘 점심<br>뭐 먹지?</div>
+      </div>
+    </div>
   </div>
 
   <!-- 로딩 -->
   <div id="loading">
-    <span class="crystal">💌</span>
-    <p class="subtitle" style="margin-bottom:1.5rem">메시지를 준비하는 중...</p>
+    <span class="loading-icon" id="loading-icon">💌</span>
+    <p class="subtitle" id="loading-text" style="margin-bottom:1.5rem">준비하는 중...</p>
     <div class="dots">
       <span></span><span></span><span></span>
     </div>
@@ -208,11 +231,15 @@
 
   <!-- 결과 -->
   <div id="result">
-    <p class="result-label">✦ 오늘의 메시지 ✦</p>
-    <div class="fortune-card">
-      <p class="fortune-text" id="fortune-text"></p>
+    <p class="result-label" id="result-label">✦ 오늘의 메시지 ✦</p>
+    <div class="result-card">
+      <p class="result-text" id="result-text"></p>
+      <p class="result-sub" id="result-sub"></p>
     </div>
-    <button class="btn-again" onclick="showFortune()">🔄 다른 메시지 보기</button>
+    <div class="btn-row">
+      <button class="btn-again" id="btn-again" onclick="reroll()">🔄 다시 뽑기</button>
+      <button class="btn-again" onclick="goHome()">🏠 처음으로</button>
+    </div>
   </div>
 
 </div>
@@ -234,7 +261,7 @@
   }
 
   // ── 메시지 문구 ──
-  const fortunes = [
+  const messages = [
     "오늘의 노력이 내일의 나를 만든다",
     "늦어도 괜찮다, 멈추지만 않으면",
     "작은 시작이 큰 변화를 만든다",
@@ -275,30 +302,184 @@
     "오늘의 작은 행복 놓치지 않기",
     "마음이 편한 곳이 좋은 곳이다",
     "지금 이 순간도 충분하다",
+    "헌신하면 헌신짝 된다.",
+    "선배는 입을 닫고 지갑을 열어라.",
+    "도망친 곳에 낙원은 없다지만, 일단 도망치면 살아는 남는다.",
+    "성공은 1%의 재능과 99%의 돈과 인맥으로 이루어진다.",
+    "내일 할 수 있는 일을 오늘 할 필요는 없다.",
+    "시작은 반이 아니라, 그냥 시작일 뿐이다.",
+    "인생은 짧다. 그러니 굳이 안 해도 될 일까지 하면서 살지 말자.",
+    "남들이 너를 낮게 평가하더라도 절대 실망하지 마라. 네가 진짜 그 정도일 수도 있으니까.",
+    "세상은 넓고 이상한 사람은 많다. 만약 주변에 이상한 사람이 없다면 본인을 의심해라.",
+    "기분이 태도가 되지 말자고 하지만, 내 기분은 이미 출근할 때부터 무너졌다.",
+    "즐길 수 없으면 피하라.",
+    "어려운 길은 길이 아니다. 다른 길을 찾아라.",
   ];
 
-  let lastIndex = -1;
+  // ── 메뉴 추천 ──
+  const menus = [
+    { name: "김치찌개 🍲", desc: "뜨끈한 국물 한 그릇으로 오후 에너지 충전." },
+    { name: "된장찌개 🍲", desc: "구수한 된장의 힘으로 오늘 하루도 거뜬하게." },
+    { name: "제육볶음 🥩", desc: "매콤달콤 제육볶음, 밥 한 공기 뚝딱." },
+    { name: "비빔밥 🥗", desc: "쓱쓱 비벼서 한 그릇. 빠르고 든든하게." },
+    { name: "뚝배기불고기 🍲", desc: "뜨겁게 끓는 불고기, 오늘 점심은 이걸로." },
+    { name: "부대찌개 🍲", desc: "뭔가 든든하게 먹고 싶을 때. 소시지도 챙겨서." },
+    { name: "순대국밥 🍜", desc: "서민의 힘, 순대국밥 한 그릇으로 든든하게." },
+    { name: "뼈해장국 🍖", desc: "묵직한 뼈해장국 한 그릇. 피로가 녹아내린다." },
+    { name: "짜장면 🍜", desc: "결정 장애엔 짜장면. 실패 없는 선택이다." },
+    { name: "짬뽕 🍜", desc: "얼큰한 국물이 당기는 날. 짬뽕으로 결정." },
+    { name: "볶음밥 🍳", desc: "심플하지만 확실한 맛. 볶음밥의 배신은 없다." },
+    { name: "탕수육 🍖", desc: "부먹이냐 찍먹이냐, 오늘만큼은 평화롭게." },
+    { name: "마라탕 🌶️", desc: "자극이 필요한 날. 마라로 기분 전환하자." },
+    { name: "꿔바로우 🍗", desc: "바삭한 꿔바로우, 오늘의 작은 사치." },
+    { name: "돈까스 🍱", desc: "바삭하고 든든한 돈까스. 오후도 바삭하게." },
+    { name: "라멘 🍜", desc: "진한 국물 한 그릇. 오늘 하루도 버텨보자." },
+    { name: "우동 🍜", desc: "따뜻하고 부드러운 우동. 위장이 고마워할 거다." },
+    { name: "초밥 🍣", desc: "오늘은 조금 특별하게. 작은 사치를 허락하자." },
+    { name: "규동 🥩", desc: "달콤한 소고기 덮밥. 간단하지만 행복하다." },
+    { name: "사케동 🐟", desc: "신선한 연어 위에 밥 한 공기. 오늘의 픽." },
+    { name: "파스타 🍝", desc: "크림이냐 토마토냐, 그것이 문제로다." },
+    { name: "피자 🍕", desc: "한 조각의 행복. 나눠 먹으면 더 맛있다." },
+    { name: "햄버거 🍔", desc: "육즙 터지는 패티의 유혹. 오늘은 허락하자." },
+    { name: "샌드위치 🥪", desc: "간단하고 든든하게. 손에 들고 산책도 좋겠다." },
+    { name: "샐러드 🥗", desc: "가볍게 먹는 날도 필요하다. 오늘은 샐러드로." },
+    { name: "쌀국수 🍜", desc: "깔끔하고 향긋한 쌀국수 한 그릇." },
+    { name: "팟타이 🍜", desc: "이국적인 맛으로 기분 전환. 팟타이 어때?" },
+    { name: "카레 🍛", desc: "황금빛 카레 한 접시. 심플하게 행복하게." },
+    { name: "뚝배기떡볶이 🌶️", desc: "매콤달콤하게 끓는 떡볶이. 오후 힘 충전." },
+    { name: "김치찜 🍲", desc: "깊게 익은 김치찜 한 접시. 밥이 절로 들어간다." },
+    { name: "고등어구이 🐟", desc: "고소한 고등어구이. 건강도 챙기는 오늘." },
+    { name: "육개장 🍲", desc: "얼큰하고 든든한 육개장. 피로 회복에 최고." },
+    { name: "설렁탕 🍲", desc: "뽀얀 국물에 밥 한 공기. 오늘은 소박하게." },
+    { name: "갈비탕 🍖", desc: "뼈 있는 음식이 힘을 준다고 했다. 오늘의 픽." },
+    { name: "콩나물국밥 🍲", desc: "아삭하고 시원한 콩나물국밥. 속이 개운해진다." },
+    { name: "닭갈비 🍗", desc: "매콤 닭갈비에 볶음밥 한 그릇. 오늘의 정답." },
+    { name: "낙지볶음 🌶️", desc: "불향 가득한 낙지볶음. 오늘 점심은 불맛으로." },
+    { name: "쭈꾸미삼겹살 🥩", desc: "쭈꾸미의 매운 맛과 삼겹살의 조화. 완벽하다." },
+    { name: "보쌈정식 🥬", desc: "부드러운 수육에 배추 쌈. 건강하고 맛있게." },
+    { name: "간장게장정식 🦀", desc: "밥도둑 간장게장. 오늘만큼은 밥 한 공기 더." },
+    { name: "생선구이백반 🐟", desc: "정갈한 생선구이 백반. 기본이 최고다." },
+    { name: "칼국수 🍜", desc: "쫄깃한 면발에 시원한 국물. 든든한 한 끼." },
+    { name: "수제비 🍲", desc: "손으로 뚝뚝 뜯어넣은 수제비. 정겹고 맛있다." },
+    { name: "냉면 🍜", desc: "시원한 냉면 한 그릇, 더위도 스트레스도 날려버리자." },
+    { name: "탄탄면 🌶️", desc: "고소하고 얼큰한 탄탄면. 오늘의 도전." },
+    { name: "마파두부밥 🍛", desc: "얼큰하고 부드러운 마파두부. 밥이랑 최고 궁합." },
+    { name: "텐동 🍤", desc: "바삭한 튀김 위에 달콤한 타레. 텐동의 정석." },
+    { name: "가츠동 🍱", desc: "부드러운 달걀과 돈까스의 조화. 간단하게 행복." },
+    { name: "회덮밥 🐟", desc: "신선한 회와 채소를 얹은 덮밥. 오늘은 가볍게." },
+    { name: "물회 🐟", desc: "시원한 물회 한 그릇. 여름엔 이게 최고다." },
+    { name: "샤브샤브 🥘", desc: "오늘은 건강하게. 채소 듬뿍 샤브샤브 어때?" },
+    { name: "삼겹살구이 🥩", desc: "역시 회식엔 삼겹살. 팀원들과 함께라면 더 맛있다." },
+    { name: "한우꽃등심 🥩", desc: "오늘만큼은 나를 위한 투자. 한우 한 점." },
+    { name: "돼지갈비 🍖", desc: "달달하게 양념된 돼지갈비. 숯불 향이 일품." },
+    { name: "소곱창구이 🥩", desc: "쫄깃한 곱창의 매력. 한 번 빠지면 헤어나올 수 없다." },
+    { name: "막창볶음 🌶️", desc: "고소하고 쫄깃한 막창볶음. 소주 없이도 맛있다." },
+    { name: "족발 🐷", desc: "쫄깃한 족발 한 접시. 새우젓과 찰떡궁합." },
+    { name: "보쌈 🥬", desc: "부드러운 수육과 신선한 쌈채소. 건강한 한 끼." },
+    { name: "닭볶음탕 🍗", desc: "얼큰하고 든든한 닭볶음탕. 국물에 밥 비비면 끝." },
+    { name: "백숙 🍗", desc: "보양식의 정석, 백숙 한 그릇. 오늘 힘내자." },
+    { name: "오리진흙구이 🦆", desc: "구수하고 담백한 오리구이. 특별한 날의 보양식." },
+    { name: "감자탕 🍲", desc: "뼈다귀 감자탕 한 냄비. 뼛속까지 든든하게." },
+    { name: "아구찜 🌶️", desc: "얼큰한 아구찜에 콩나물. 매운 맛 마니아의 선택." },
+    { name: "해물탕 🦞", desc: "싱싱한 해산물이 가득한 해물탕. 바다가 느껴진다." },
+    { name: "조개구이 🦪", desc: "석쇠 위에서 익어가는 조개들. 버터 올리면 완벽." },
+    { name: "양꼬치 🍢", desc: "고소한 양꼬치에 쯔란 솔솔. 맥주 없이도 맛있다." },
+    { name: "훠궈 🌶️", desc: "끓는 육수에 재료를 퐁당. 오늘은 훠궈 파티." },
+    { name: "호텔파인다이닝 🍽️", desc: "오늘만큼은 최고의 대접을 받을 자격이 있다." },
+    { name: "한우오마카세 🥩", desc: "셰프가 고른 최고의 한우 코스. 오늘 이 선택 후회 없다." },
+    { name: "스시오마카세 🍣", desc: "장인의 손에서 탄생한 한 점 한 점. 황홀한 경험." },
+    { name: "랍스터버터구이 🦞", desc: "풍성한 랍스터에 버터 향. 오늘 나 자신에게 선물." },
+    { name: "킹크랩찜 🦀", desc: "킹크랩 찜 한 상. 오늘만큼은 왕처럼 먹자." },
+    { name: "대게수산 🦀", desc: "싱싱한 대게 한 마리. 뜯는 재미가 먹는 재미." },
+    { name: "프렌치코스요리 🍷", desc: "우아하게 코스로. 오늘 점심은 파리 느낌으로." },
+    { name: "트러플파스타 🍝", desc: "트러플 향이 은은하게. 고급진 한 끼." },
+    { name: "캐비어오믈렛 🥚", desc: "캐비어를 올린 오믈렛. 오늘은 특별하게 시작." },
+    { name: "베이징덕 🦆", desc: "바삭한 오리 껍질의 황제. 한 번은 먹어봐야 할 맛." },
+    { name: "불도장 🍲", desc: "전설의 불도장. 먹어봤다면 설명이 필요 없다." },
+    { name: "일식사시미코스 🐟", desc: "제철 생선회 코스. 오늘은 바다와 함께." },
+    { name: "철판요리코스 🍳", desc: "셰프의 퍼포먼스와 함께하는 철판 코스." },
+    { name: "고베규스테이크 🥩", desc: "마블링의 예술, 고베규 스테이크. 말이 필요 없다." },
+    { name: "티본스테이크 🥩", desc: "티본 한 장. 오늘 가장 호쾌한 선택이 될 것이다." },
+    { name: "우니동 🦔", desc: "성게 알이 가득한 우니동. 바다의 정수." },
+    { name: "독도새우회 🦐", desc: "달콤하고 탱글한 독도새우. 희귀하고 귀한 맛." },
+    { name: "포케 🥗", desc: "하와이안 포케볼. 건강하고 트렌디하게." },
+    { name: "그릭요거트볼 🥗", desc: "상큼하고 건강하게. 오늘은 가볍게 리셋." },
+    { name: "치킨치즈랩 🌯", desc: "치킨과 치즈의 만남. 손에 들고 간편하게." },
+    { name: "타코 🌮", desc: "바삭한 타코 쉘에 알찬 속재료. 멕시코 느낌으로." },
+    { name: "퀘사디아 🧀", desc: "치즈 듬뿍 퀘사디아. 늘어나는 치즈가 행복이다." },
+    { name: "부리또 🌯", desc: "한 손에 꽉 차는 부리또. 든든하고 간편하게." },
+    { name: "수제버거 🍔", desc: "수제 패티의 육즙이 폭발. 오늘 점심 미션 완료." },
+    { name: "마르게리따피자 🍕", desc: "클래식의 힘. 마르게리따 한 판이면 충분하다." },
+    { name: "뇨끼 🍝", desc: "쫀득한 뇨끼에 크림소스. 이탈리아 느낌 물씬." },
+    { name: "라자냐 🍝", desc: "층층이 쌓인 라자냐. 한 조각이 한 끼." },
+    { name: "인도난과커리 🍛", desc: "향신료 가득한 인도 커리. 오늘은 이국적으로." },
+    { name: "나시고랭 🍳", desc: "동남아 볶음밥의 정석. 여행 감성으로 한 끼." },
+    { name: "미고랭 🍜", desc: "향긋한 미고랭 볶음면. 인도네시아 현지 느낌." },
+    { name: "분짜 🍜", desc: "베트남 분짜 한 그릇. 깔끔하고 향긋하게." },
+    { name: "반미샌드위치 🥖", desc: "바삭한 바게트에 베트남 속재료. 가볍게 즐기자." },
+    { name: "편의점도시락 🍱", desc: "바쁜 날엔 편의점. 그것도 나쁘지 않다." },
+    { name: "컵라면과삼각김밥 🍜", desc: "인생 최고의 조합. 가성비는 최고다." },
+    { name: "길거리토스트 🍞", desc: "버터 향 가득한 길거리 토스트. 추억의 맛." },
+    { name: "시장떡볶이와튀김 🌶️", desc: "시장 특유의 그 맛. 포장마차 앞에 줄 서자." },
+    { name: "아이스아메리카노와조각케이크 ☕", desc: "점심은 생략. 오늘은 디저트가 메인이다." },
+  ];
 
-  function showFortune() {
+  let currentMode = 'message';
+  let lastIdx = -1;
+
+  function show(mode) {
+    currentMode = mode;
     document.getElementById('landing').style.display = 'none';
     document.getElementById('result').style.display = 'none';
     document.getElementById('loading').style.display = 'block';
 
-    setTimeout(() => {
-      // 직전과 다른 문구 선택
-      let idx;
-      do { idx = Math.floor(Math.random() * fortunes.length); } while (idx === lastIndex && fortunes.length > 1);
-      lastIndex = idx;
+    if (mode === 'message') {
+      document.getElementById('loading-icon').innerText = '💌';
+      document.getElementById('loading-text').innerText = '메시지를 준비하는 중...';
+    } else {
+      document.getElementById('loading-icon').innerText = '🍽️';
+      document.getElementById('loading-text').innerText = '오늘의 메뉴를 고르는 중...';
+    }
 
-      document.getElementById('fortune-text').innerText = fortunes[idx];
+    setTimeout(() => render(mode), 1800);
+  }
 
-      document.getElementById('loading').style.display = 'none';
-      const resultEl = document.getElementById('result');
-      resultEl.style.display = 'block';
-      resultEl.style.animation = 'none';
-      void resultEl.offsetWidth;
-      resultEl.style.animation = 'fadeIn 0.8s ease';
-    }, 1800);
+  function render(mode) {
+    const list = mode === 'message' ? messages : menus;
+    let idx;
+    do { idx = Math.floor(Math.random() * list.length); } while (idx === lastIdx && list.length > 1);
+    lastIdx = idx;
+
+    if (mode === 'message') {
+      document.getElementById('result-label').innerText = '✦ 오늘의 메시지 ✦';
+      document.getElementById('result-text').innerText = list[idx];
+      document.getElementById('result-sub').innerText = '';
+      document.getElementById('btn-again').innerText = '🔄 다른 메시지 보기';
+    } else {
+      document.getElementById('result-label').innerText = '✦ 오늘의 메뉴 추천 ✦';
+      document.getElementById('result-text').innerText = list[idx].name;
+      document.getElementById('result-sub').innerText = list[idx].desc;
+      document.getElementById('btn-again').innerText = '🔄 다른 메뉴 보기';
+    }
+
+    document.getElementById('loading').style.display = 'none';
+    const resultEl = document.getElementById('result');
+    resultEl.style.display = 'block';
+    resultEl.style.animation = 'none';
+    void resultEl.offsetWidth;
+    resultEl.style.animation = 'fadeIn 0.8s ease';
+  }
+
+  function reroll() { render(currentMode); }
+
+  function goHome() {
+    document.getElementById('result').style.display = 'none';
+    lastIdx = -1;
+    const landing = document.getElementById('landing');
+    landing.style.display = 'block';
+    landing.style.animation = 'none';
+    void landing.offsetWidth;
+    landing.style.animation = 'fadeIn 0.6s ease';
   }
 </script>
 </body>
